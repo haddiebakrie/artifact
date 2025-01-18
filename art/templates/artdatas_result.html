@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Results for "{{ dynasty }}"</h1>
+    <table>
+        <thead>
+            <tr>
+                <th >ID</th>
+                <th >Objektgattung</th>
+                <th >Sphaere</th>
+                <th >Datierung</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for artdata in artdata_list %}
+            <tr>
+                <td>{{ artdata.id }}</td>
+                <td>{{ artdata.objektgattung }}</td>
+                <td>{{ artdata.sphaere }}</td>
+                <td>{{ artdata.datierung }}</td>
+                <td><a href="{% url 'artdata-detail' artdata.id %}">View Details</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

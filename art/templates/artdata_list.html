@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ArtData List</title>
+    <style>
+        .container {
+            display: flex;
+        }
+        .image-container {
+            width: 30%;
+            padding-left: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; width: 100%;">
+        <h1>ArtData List</h1>
+        <h3 style="text-align: right; font-weight: bolder;">
+            Ahmed Khalifa, Institut of Egyptology, LMU University, Munich
+        </h3>
+    </div>
+    <form method="get" action="{% url 'artdata-search' %}">
+        <input type="text" name="query" placeholder="Search by Datierung/ID/Namen und Beiwoerter" style="width: 400px; height: 30px;">
+        <button type="submit" style="width: 100px; height: 40px;">Search</button>
+    </form>
+    <br>
+    <div class="container">
+        <div class="table-container">
+            {% if artdata_list %}
+            <div class="card-container">
+                {% for artdata in artdata_list %}
+                <a href="{% url 'artdata-detail' artdata.id %}">
+                    <div class="card">
+                        <div class="card-id">{{ artdata.id }}</div>
+                        <div class="card-image">
+                            <img src="{{ artdata.bild_url }}" alt="Art Image" onclick="showImage('{{ artdata.image_url }}')">
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+
+            <style>
+                .card-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+                }
+                .card {
+                    border: 1px solid black;
+                    padding: 10px;
+                    width: 200px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .card-id {
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+                .card-image img {
+                    max-width: 100%;
+                    cursor: pointer;
+                    min-height: 120px;
+                    max-height: 120px;
+                }
+            </style>
+            {% else %}
+            <p>No results found</p>
+            {% endif %}
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+</head>
+<body style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0;"></body>
+    <h2>Upload a File</h2>
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>
