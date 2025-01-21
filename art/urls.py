@@ -7,5 +7,4 @@ urlpatterns = [
     path('import/', views.upload_csv),
     path('search/', views.artdata_search, name='artdata-search'),
     path('<str:id>/', views.artdata_detail, name='artdata-detail'),
-
 ]
