@@ -21,7 +21,7 @@ def upload_csv(request):
                 artdata = ArtData()
                 for column, value in row.items():
                     print(f'{column}: {value}')
-                    setattr(artdata, column, value)
+                    setattr(artdata, column.replace("\ufeff", ""), value.strip())
                     artdata.save()
                 
             return HttpResponse("File uploaded and processed successfully!")
